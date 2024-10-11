@@ -127,3 +127,6 @@ firestorm.code-workspace
 *-compiled.glsl
 
 .github/release.yaml
+
+# Catwalk
+build/
