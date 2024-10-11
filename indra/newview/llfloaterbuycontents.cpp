@@ -52,6 +52,10 @@
 #include "lluictrlfactory.h"
 #include "llviewerwindow.h"
 
+// [CATWALK:RBN] - Created 2024-10-10 (Catwalk 0.0.1)
+#include "cwShopping.h"
+// [/CATWALK:RBN]
+
 LLFloaterBuyContents::LLFloaterBuyContents(const LLSD& key)
 :   LLFloater(key)
 {
@@ -126,7 +130,10 @@ void LLFloaterBuyContents::show(const LLSaleInfo& sale_info)
     {
         gCacheName->getGroupName(owner_id, owner_name);
     }
-
+// [CATWALK:RBN] - Created 2024-10-10 (Catwalk 0.0.1)
+    floater->cw_mName = node->mName;
+    floater->cw_mType = node->getObject()->getInventoryRoot()->getType();
+// [/CATWALK:RBN]
     floater->getChild<LLUICtrl>("contains_text")->setTextArg("[NAME]", node->mName);
     floater->getChild<LLUICtrl>("buy_text")->setTextArg("[AMOUNT]", llformat("%d", sale_info.getSalePrice()));
     floater->getChild<LLUICtrl>("buy_text")->setTextArg("[NAME]", owner_name);
@@ -282,9 +289,14 @@ void LLFloaterBuyContents::onClickBuy()
         LLInventoryState::sWearNewClothing = true;
     }
 
-    // Put the items where we put new folders.
+// [CATWALK:RBN]  
     LLUUID category_id;
-    category_id = gInventory.findCategoryUUIDForType(LLFolderType::FT_ROOT_INVENTORY);
+    category_id = cwGetFolderUUID(cw_mType,cw_mName); 
+// [/CATWALK:RBN] -- LLUUID category_id below is original code. Uncomment if deleting CATWALK code.
+
+    // Put the items where we put new folders.
+    // LLUUID category_id;
+    // category_id = gInventory.findCategoryUUIDForType(LLFolderType::FT_ROOT_INVENTORY);
 
     // *NOTE: doesn't work for multiple object buy, which UI does not
     // currently support sale info is used for verification only, if

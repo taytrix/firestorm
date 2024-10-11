@@ -157,6 +157,10 @@
 #include "NACLantispam.h"
 #include "chatbar_as_cmdline.h"
 
+// [CATWALK:RBN] - Created 2024-10-10 (Catwalk 0.0.1)
+#include "cwShopping.h"
+// [/CATWALK:RBN]
+
 extern void on_new_message(const LLSD& msg);
 
 extern bool gCubeSnapshot;
@@ -2265,6 +2269,9 @@ bool LLOfferInfo::inventory_task_offer_callback(const LLSD& notification, const 
             }
 // [/RLVa:KB]
 
+// [CATWALK:RBN] - Created 2024-10-10 (Catwalk 0.0.1)
+            mFolderID = cwGetFolderUUID(mType, mDesc);
+// [/CATWALK:RBN]
             destination = mFolderID;
             //don't spam user if flooded
             if (check_offer_throttle(mFromName, true))

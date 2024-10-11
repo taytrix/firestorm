@@ -62,6 +62,12 @@ protected:
 protected:
     LLSafeHandle<LLObjectSelection> mObjectSelection;
     LLSaleInfo mSaleInfo;
+
+// [CATWALK:RBN] - Created 2024-10-10 (Catwalk 0.0.1)
+protected:
+    std::string cw_mName;
+    LLAssetType::EType cw_mType;
+// [/CATWALK:RBN]
 };
 
 #endif
