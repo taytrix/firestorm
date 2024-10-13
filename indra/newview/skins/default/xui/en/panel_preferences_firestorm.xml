@@ -1833,5 +1833,151 @@
        width="200"
        follows="left|top" />
     </panel>
+<!-- [/CATWALK:RBN] -->
+    <!--Uploads-->
+    <panel
+     top_pad="5"
+     bottom="-1"
+     left="1"
+     right="-1"
+     follows="all"
+     label="Catwalk"
+     name="CatwalkTab">
+      <text
+       type="string"
+       length="1"
+       follows="left|top"
+       height="12"
+       layout="topleft"
+       left="10"
+       name="title"
+       top_pad="10"
+       width="250">
+        Catwalk settings:
+      </text>
+
+      <text
+       type="string"
+       length="1"
+       follows="left|top"
+       height="12"
+       layout="topleft"
+       left="10"
+       name="cw_demo_folder_title"
+       top_pad="17"
+       width="100">
+        Demo folder
+      </text>
+      <text
+       type="string"
+       use_ellipses="true"
+       follows="left|top"
+       height="27"
+       layout="topleft"
+       font.style="BOLD"
+       left="10"
+       name="cw_demo_folder"
+       top_pad="5"
+       width="370"
+       word_wrap="true" />
+      
+      <text
+       type="string"
+       length="1"
+       follows="left|top"
+       height="12"
+       layout="topleft"
+       left="10"
+       name="cw_purchase_folder_title"
+       top_pad="7"
+       width="100">
+        Purchase folder
+      </text>
+      <text
+       type="string"
+       use_ellipses="true"
+       follows="left|top"
+       height="27"
+       layout="topleft"
+       font.style="BOLD"
+       left="10"
+       name="cw_purchase_folder"
+       top_pad="5"
+       width="370"
+       word_wrap="true" />
+      
+      <text
+       type="string"
+       length="1"
+       follows="left|top"
+       height="12"
+       layout="topleft"
+       left="10"
+       name="cw_demo_boxed_folder_title"
+       top_pad="7"
+       width="100">
+        Demo boxed folder
+      </text>
+      <text
+       type="string"
+       use_ellipses="true"
+       follows="left|top"
+       height="27"
+       layout="topleft"
+       font.style="BOLD"
+       left="10"
+       name="cw_demo_boxed_folder"
+       top_pad="5"
+       width="370"
+       word_wrap="true" />
+
+      <text
+       type="string"
+       length="1"
+       follows="left|top"
+       height="12"
+       layout="topleft"
+       left="10"
+       name="cw_purchase_boxed_folder_title"
+       top_pad="7"
+       width="100">
+        Purchase boxed folder
+      </text>
+      <text
+       type="string"
+       use_ellipses="true"
+       follows="left|top"
+       height="27"
+       layout="topleft"
+       font.style="BOLD"
+       left="10"
+       name="cw_purchase_boxed_folder"
+       top_pad="5"
+       width="370"
+       word_wrap="true" />
+
+      <text
+       type="string"
+       length="1"
+       follows="left|top"
+       height="30"
+       layout="topleft"
+       font.style="ITALIC"
+       left="10"
+       name="upload_help"
+       top_pad="6"
+       width="475">
+        To change a destination folder, right click on it in inventory and choose
+     "Use as default for"
+      </text>
+      <button
+       name="cw_reset_default_folders"
+       label="Reset default folders"
+       left="10"
+       top_pad="10"
+       width="200"
+       follows="left|top" />
+    </panel>
+<!-- [/CATWALK:RBN] -->
 </tab_container>
 </panel>

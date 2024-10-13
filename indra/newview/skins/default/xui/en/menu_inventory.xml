@@ -426,6 +426,43 @@
          function="Inventory.FileUploadLocation"
          parameter="pbr_material" />
       </menu_item_call>
+<!-- [CATWALK:RBN] - Added 2024-10-13 -->
+      <menu_item_separator
+       layout="topleft"
+       name="Catwalk Separator" />
+      <menu_item_call
+         label="Demos"
+         layout="topleft"
+         name="Catwalk demo folders">
+         <menu_item_call.on_click
+            function="Inventory.FileUploadLocation"
+            parameter="cw_Demo" />
+      </menu_item_call>
+      <menu_item_call
+         label="Purchases"
+         layout="topleft"
+         name="Catwalk purchase folders">
+         <menu_item_call.on_click
+            function="Inventory.FileUploadLocation"
+            parameter="cw_Purchase" />
+      </menu_item_call>
+      <menu_item_call
+         label="Demos (Boxed)"
+         layout="topleft"
+         name="Catwalk boxed demo objects">
+         <menu_item_call.on_click
+            function="Inventory.FileUploadLocation"
+            parameter="cw_DemoBoxed" />
+      </menu_item_call>
+      <menu_item_call
+         label="Purchases (Boxed)"
+         layout="topleft"
+         name="Catwalk boxed purchase objects">
+         <menu_item_call.on_click
+            function="Inventory.FileUploadLocation"
+            parameter="cw_PurchaseBoxed" />
+      </menu_item_call>
+<!-- [/CATWALK:RBN] -->
     </menu>
     <menu
      label="Change Type"

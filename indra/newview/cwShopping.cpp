@@ -14,8 +14,12 @@
 #include "llinventory.h"
 #include "llinventorymodel.h"
 #include "llinventorytype.h"
+#include "llinventorypanel.h"
+#include "llcontrol.h"
+#include "llinventoryfunctions.h"
 
 extern LLInventoryModel gInventory;
+extern LLControlGroup   gSavedPerAccountSettings;
 
 // Consumed by llfloaterbuycontents.cpp LLFloaterBuyContents::onBtnBuy()
 // Consumed by llviewermessage.cpp      LLOfferInfo::inventory_task_callback()
@@ -42,10 +46,15 @@ LLUUID cwGetFolderUUID(LLAssetType::EType cwType, std::string cwDesc)
     {
         // Default UUIDs for demo and purchase folders
         // Temporary home until we can add them in user settings
-        cw_FolderDemoUUID     = LLUUID("7e4d2b00-35d7-3e93-866d-b91042956298");
-        cw_FolderPurchaseUUID = LLUUID("2c4524b0-e4d8-3b41-86ff-36548b012dfb");
-        cw_ObjectDemoUUID     = LLUUID("279b8f85-3015-3155-899d-494a08f0861d");
-        cw_ObjectPurchaseUUID = LLUUID("170e51e1-af49-319c-ac07-05de0af0fd92");
+        // cw_FolderDemoUUID     = LLUUID("7e4d2b00-35d7-3e93-866d-b91042956298");
+        // cw_FolderPurchaseUUID = LLUUID("2c4524b0-e4d8-3b41-86ff-36548b012dfb");
+        // cw_ObjectDemoUUID     = LLUUID("279b8f85-3015-3155-899d-494a08f0861d");
+        // cw_ObjectPurchaseUUID = LLUUID("170e51e1-af49-319c-ac07-05de0af0fd92");
+
+        cw_FolderDemoUUID     = cw_GetSavedShoppingFolderUUID("cw_DemoFolder");
+        cw_FolderPurchaseUUID = cw_GetSavedShoppingFolderUUID("cw_PurchaseFolder");
+        cw_ObjectDemoUUID     = cw_GetSavedShoppingFolderUUID("cw_DemoBoxedFolder");
+        cw_ObjectPurchaseUUID = cw_GetSavedShoppingFolderUUID("cw_PurchaseBoxedFolder");
 
         cw_LowerItemName = cw_OfferedItemName;
         LLStringUtil::toLower(cw_LowerItemName);
@@ -74,4 +83,46 @@ LLUUID cwGetFolderUUID(LLAssetType::EType cwType, std::string cwDesc)
     LLUUID              cw_folder_uuid = gInventory.findCategoryUUIDForType(cw_folder_type);
 
     return cw_folder_uuid;
+}
+
+LLUUID cw_GetSavedShoppingFolderUUID(std::string cw_FolderName)
+{
+    LLUUID cw_FolderUUID;
+    // Get the UUID from saved settings
+    std::string savedUUID = gSavedPerAccountSettings.getString(cw_FolderName);
+    
+    // Check if the saved string is a valid UUID
+    if (LLUUID::validate(savedUUID))
+    {
+        cw_FolderUUID = LLUUID(savedUUID);
+    }
+    else
+    {
+        // If not a valid UUID, use default folders based on the folder name
+        if (cw_FolderName == "cw_DemoFolder" || cw_FolderName == "cw_PurchaseFolder")
+        {
+            // For regular folders, use the default folder for folders
+            cw_FolderUUID = gInventory.findCategoryUUIDForType(LLFolderType::FT_CATEGORY);
+        }
+        else if (cw_FolderName == "cw_DemoBoxedFolder" || cw_FolderName == "cw_PurchaseBoxedFolder")
+        {
+            // For boxed objects, use the default folder for objects
+            cw_FolderUUID = gInventory.findCategoryUUIDForType(LLFolderType::FT_OBJECT);
+        }
+    }
+
+    return cw_FolderUUID;
+}
+
+std::string cw_GetShoppingFolderPath(LLUUID cw_FolderUUID)
+{
+    return get_category_path(cw_FolderUUID);
+}
+
+void cw_ResetDefaultFolders()
+{
+    gSavedPerAccountSettings.set("cw_DemoFolder",           gInventory.findCategoryUUIDForType(LLFolderType::FT_CATEGORY).asString());
+    gSavedPerAccountSettings.set("cw_PurchaseFolder",       gInventory.findCategoryUUIDForType(LLFolderType::FT_CATEGORY).asString());
+    gSavedPerAccountSettings.set("cw_DemoBoxedFolder",      gInventory.findCategoryUUIDForType(LLFolderType::FT_OBJECT).asString());
+    gSavedPerAccountSettings.set("cw_PurchaseBoxedFolder",  gInventory.findCategoryUUIDForType(LLFolderType::FT_OBJECT).asString());
 }

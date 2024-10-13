@@ -58,6 +58,10 @@ private:
 
     void onResetDefaultFolders();
 
+// [CATWALK:RBN] - Added 2024-10-13
+    void onResetDefaultFolders();
+// [/CATWALK:RBN]
+
     FSEmbeddedItemDropTarget*   mInvDropTarget;
     std::string                 mEmbeddedItem;
 };

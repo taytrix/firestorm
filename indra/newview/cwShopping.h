@@ -21,3 +21,21 @@
  * @return LLUUID The UUID of the corresponding folder.
  */
 LLUUID cwGetFolderUUID(LLAssetType::EType cwType, std::string cwDesc);
+
+/**
+ * @brief Resets the default object and category folders to the default values.
+ */
+void cw_ResetDefaultFolders();
+
+/**
+ * @brief Retrieves the UUID of a folder based on the folder name.
+ * 
+ * @param cw_FolderName The name of the folder.
+ * @return LLUUID The UUID of the corresponding folder.
+ */
+LLUUID cw_GetSavedShoppingFolderUUID(std::string cw_FolderName);
+
+/**
+ * @brief Retrieves the path of a folder based on the folder UUID.
+ */
+std::string cw_GetShoppingFolderPath(LLUUID cw_FolderUUID);

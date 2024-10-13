@@ -731,7 +731,53 @@
         <key>Value</key>
         <integer>2</integer>
       </map>
-    
+<!-- [CATWALK:RBN] - Added 2024-10-13 -->
+    <key>cw_DemoFolder</key>
+    <map>
+        <key>Comment</key>
+        <string>All Catwalk demo items will be stored in this directory (UUID)</string>
+        <key>Persist</key>
+        <integer>1</integer>
+        <key>Type</key>
+        <string>String</string>
+        <key>Value</key>
+        <string></string>
+    </map>
+    <key>cw_PurchaseFolder</key>
+    <map>
+        <key>Comment</key>
+        <string>All Catwalk purchase items will be stored in this directory (UUID)</string>
+        <key>Persist</key>
+        <integer>1</integer>
+        <key>Type</key>
+        <string>String</string>
+        <key>Value</key>
+        <string></string>
+    </map>
+    <key>cw_DemoBoxedFolder</key>
+    <map>
+        <key>Comment</key>
+        <string>All Catwalk boxed demo items will be stored in this directory (UUID)</string>
+        <key>Persist</key>
+        <integer>1</integer>
+        <key>Type</key>
+        <string>String</string>
+        <key>Value</key>
+        <string></string>
+    </map>         
+    <key>cw_PurchaseBoxedFolder</key>
+    <map>
+        <key>Comment</key>
+        <string>All Catwalk boxed purchase items will be stored in this directory (UUID)</string>
+        <key>Persist</key>
+        <integer>1</integer>
+        <key>Type</key>
+        <string>String</string>
+        <key>Value</key>
+        <string></string>
+    </map>
+<!-- [/CATWALK:RBN] -->
+
     <!-- Firestorm settings -->
     <key>DebugLookAt</key>
         <map>

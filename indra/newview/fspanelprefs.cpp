@@ -40,6 +40,9 @@
 #include "llstartup.h"
 #include "lltexturectrl.h"
 #include "llviewercontrol.h"
+// [CATWALK:RBN] - Added 2024-10-13 
+#include "cwShopping.h"
+// [/CATWALK:RBN]
 
 static LLPanelInjector<FSPanelPrefs> t_pref_fs("panel_preference_firestorm");
 
@@ -67,6 +70,7 @@ bool FSPanelPrefs::postBuild()
     getChild<LLUICtrl>("delete_beam")->setCommitCallback(boost::bind(&FSPanelPrefs::onBeamDelete, this));
 
     getChild<LLUICtrl>("reset_default_folders")->setCommitCallback(boost::bind(&FSPanelPrefs::onResetDefaultFolders, this));
+    getChild<LLUICtrl>("cw_reset_default_folders")->setCommitCallback(boost::bind(&FSPanelPrefs::cw_onResetDefaultFolders, this));
 
     LLTextureCtrl* tex_ctrl = getChild<LLTextureCtrl>("texture control");
     tex_ctrl->setCommitCallback(boost::bind(&FSPanelPrefs::onCommitTexture, this, _2));
@@ -285,3 +289,9 @@ void FSPanelPrefs::onResetDefaultFolders()
     gSavedPerAccountSettings.getControl("AnimationUploadFolder")->resetToDefault(true);
     gSavedPerAccountSettings.getControl("PBRUploadFolder")->resetToDefault(true);
 }
+// [CATWALK:RBN] - Added 2024-10-13
+void FSPanelPrefs::cw_onResetDefaultFolders()
+{
+    cw_ResetDefaultFolders();
+}
+// [/CATWALK:RBN]

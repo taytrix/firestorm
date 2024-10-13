@@ -1955,6 +1955,24 @@ void LLInventoryPanel::fileUploadLocation(const LLSD& userdata)
     {
         gSavedPerAccountSettings.setString("PBRUploadFolder", LLFolderBridge::sSelf.get()->getUUID().asString());
     }
+// [CATWALK:RBN] - Added 2024-10-13
+    else if (param == "cw_Demo")
+    {
+        gSavedPerAccountSettings.setString("cw_DemoFolder", LLFolderBridge::sSelf.get()->getUUID().asString());
+    }
+    else if (param == "cw_Purchase")
+    {
+        gSavedPerAccountSettings.setString("cw_PurchaseFolder", LLFolderBridge::sSelf.get()->getUUID().asString());
+    }
+    else if (param == "cw_DemoBoxed")
+    {
+        gSavedPerAccountSettings.setString("cw_DemoBoxedFolder", LLFolderBridge::sSelf.get()->getUUID().asString());
+    }
+    else if (param == "cw_PurchaseBoxed")
+    {
+        gSavedPerAccountSettings.setString("cw_PurchaseBoxedFolder", LLFolderBridge::sSelf.get()->getUUID().asString());
+    }
+// [/CATWALK:RBN]
 }
 
 void LLInventoryPanel::openSingleViewInventory(LLUUID folder_id)
