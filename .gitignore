@@ -130,3 +130,5 @@ firestorm.code-workspace
 
 # Catwalk
 build/
+.vs/
+indra/tools/vstool
