@@ -39,3 +39,16 @@ LLUUID cw_GetSavedShoppingFolderUUID(std::string cw_FolderName);
  * @brief Retrieves the path of a folder based on the folder UUID.
  */
 std::string cw_GetShoppingFolderPath(LLUUID cw_FolderUUID);
+
+/**
+ * @brief Checks if any saved folders are null or invalid.
+ * 
+ * @return true if any saved folders are null or invalid, false otherwise.
+ */
+bool cw_areNullOrInvalidSavedFolders();
+
+/**
+ * @brief Initializes missing folders if necessary.
+ */
+void cw_InitializeMissingFolders();
+
