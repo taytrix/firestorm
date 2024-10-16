@@ -59,7 +59,7 @@ private:
     void onResetDefaultFolders();
 
 // [CATWALK:RBN] - Added 2024-10-13
-    void onResetDefaultFolders();
+    void cw_onResetDefaultFolders();
 // [/CATWALK:RBN]
 
     FSEmbeddedItemDropTarget*   mInvDropTarget;

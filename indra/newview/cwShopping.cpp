@@ -91,24 +91,27 @@ LLUUID cw_GetSavedShoppingFolderUUID(std::string cw_FolderName)
     // Get the UUID from saved settings
     std::string savedUUID = gSavedPerAccountSettings.getString(cw_FolderName);
     
-    // Check if the saved string is a valid UUID
-    if (LLUUID::validate(savedUUID))
+    // Check if the saved string is not empty and is a valid UUID
+    if (!savedUUID.empty() && LLUUID::validate(savedUUID))
     {
         cw_FolderUUID = LLUUID(savedUUID);
     }
     else
     {
-        // If not a valid UUID, use default folders based on the folder name
+        // If not a valid UUID or empty, use default folders based on the folder name
         if (cw_FolderName == "cw_DemoFolder" || cw_FolderName == "cw_PurchaseFolder")
         {
             // For regular folders, use the default folder for folders
-            cw_FolderUUID = gInventory.findCategoryUUIDForType(LLFolderType::FT_CATEGORY);
+            cw_FolderUUID = gInventory.findCategoryUUIDForType(LLFolderType::FT_ROOT_INVENTORY);
         }
         else if (cw_FolderName == "cw_DemoBoxedFolder" || cw_FolderName == "cw_PurchaseBoxedFolder")
         {
             // For boxed objects, use the default folder for objects
             cw_FolderUUID = gInventory.findCategoryUUIDForType(LLFolderType::FT_OBJECT);
         }
+        
+        // Save the default UUID back to the settings
+        gSavedPerAccountSettings.setString(cw_FolderName, cw_FolderUUID.asString());
     }
 
     return cw_FolderUUID;
@@ -121,8 +124,8 @@ std::string cw_GetShoppingFolderPath(LLUUID cw_FolderUUID)
 
 void cw_ResetDefaultFolders()
 {
-    gSavedPerAccountSettings.set("cw_DemoFolder",           gInventory.findCategoryUUIDForType(LLFolderType::FT_CATEGORY).asString());
-    gSavedPerAccountSettings.set("cw_PurchaseFolder",       gInventory.findCategoryUUIDForType(LLFolderType::FT_CATEGORY).asString());
+    gSavedPerAccountSettings.set("cw_DemoFolder",           gInventory.findCategoryUUIDForType(LLFolderType::FT_ROOT_INVENTORY).asString());
+    gSavedPerAccountSettings.set("cw_PurchaseFolder",       gInventory.findCategoryUUIDForType(LLFolderType::FT_ROOT_INVENTORY).asString());
     gSavedPerAccountSettings.set("cw_DemoBoxedFolder",      gInventory.findCategoryUUIDForType(LLFolderType::FT_OBJECT).asString());
     gSavedPerAccountSettings.set("cw_PurchaseBoxedFolder",  gInventory.findCategoryUUIDForType(LLFolderType::FT_OBJECT).asString());
 }
